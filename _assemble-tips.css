@@ -1,0 +1,158 @@
+/*------------------------------------*\
+    CONTENTS
+\*------------------------------------*/
+/**
+ *  TIP BASE
+ *  TIP FIXED WIDTH
+ *  TIP POSITIONS
+ *      Top Tip
+ *      Bottom Tip
+ *      Right Tip
+ *      Left Tip
+ */
+
+
+
+
+
+
+/*------------------------------------*\
+    !TIP BASE
+\*------------------------------------*/
+
+.tip-container{
+    display: inline;
+    position: relative;
+}
+
+@if $tip-container--right == true{
+    .tip-container--right{
+        float: right;
+    }
+}
+
+.tip{
+    display: inline-block;
+    position: absolute;
+    width: auto;
+    padding: $tip-padding;
+    transition: $tip-transition;
+    background: $tip-background-color;
+    cursor: default;
+    color: $tip-text-color;
+    font-size: $tip-font-size;
+    line-height: $tip-line-height;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    z-index: z('tip');
+    transition-delay: 0ms;
+}
+
+.tip-trigger{
+    cursor: pointer;
+}
+
+.tip__close{
+    position: absolute;
+    top: 0;
+    right: -26px;
+    height: 100%;
+    padding: $tip-close-padding;
+    transition: background-color 0.2s ease-in-out;
+    background-color: $tip-close-background-color;
+    cursor: pointer;
+    color: $tip-close-text-color;
+    font-size: 14px;
+}
+
+.tip__close:hover{
+    background-color: $tip-close-background-hover-color;
+    color: $tip-close-text-hover-color;
+}
+
+.tip--visible{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
+
+/*------------------------------------*\
+    !TIP FIXED WIDTH
+\*------------------------------------*/
+
+@if $tip-enable-width == true{
+    .tip--fixed-width{
+        width: $tip-width;
+        white-space: normal;
+    }
+}
+
+
+
+
+
+/*------------------------------------*\
+    !TIP POSITIONS
+\*------------------------------------*/
+
+/**
+ *  ^Top
+ */
+
+@if $tip-enable-top == true{
+    .tip--top{
+        right: $tip-top-right-position;
+        bottom: $tip-bottom-bottom-position;
+    }
+}
+
+/**
+ *  ^Bottom
+ */
+
+@if $tip-enable-bottom == true{
+    .tip--bottom{
+        top: $tip-top-top-position;
+        right: $tip-bottom-right-position;
+    }
+}
+
+/**
+ *  ^Right
+ */
+
+@if $tip-enable-right == true{
+    .tip--right{
+        top: $tip-right-top-position;
+        right: $tip-right-right-position;
+        width: $tip-width;
+        white-space: normal;
+
+        @media map(constants, responsive, palm){
+            top: $tip-bottom-bottom-position;
+            right: 26px;
+        }
+    }
+}
+
+/**
+ *  ^Left
+ */
+
+@if $tip-enable-left == true{
+    .tip--left{
+        top: $tip-left-top-position;
+        left: $tip-left-left-position;
+        width: $tip-width;
+        white-space: normal;
+
+        @media map(constants, responsive, palm){
+            top: $tip-bottom-bottom-position;
+            left: $tip-left-left-position + 16;
+        }
+    }
+}

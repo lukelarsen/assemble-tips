@@ -1,0 +1,18 @@
+{
+  "name": "assemble-tips",
+  "version": "1.0.0",
+  "description": "Tips for the Assemble CSS Framework.",
+  "main": "assemble-tips.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke Larsen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukelarsen/assemble-tips"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {}
+}
