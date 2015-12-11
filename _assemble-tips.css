@@ -45,7 +45,7 @@
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    z-index: z('tip');
+    z-index: map(constants, zIndexes, tip);
     transition-delay: 0ms;
 }
 
@@ -132,7 +132,7 @@
         width: $tip-width;
         white-space: normal;
 
-        @media map(constants, responsive, palm){
+        @media map(constants, mediaQueries, palm){
             top: $tip-bottom-bottom-position;
             right: 26px;
         }
@@ -150,7 +150,7 @@
         width: $tip-width;
         white-space: normal;
 
-        @media map(constants, responsive, palm){
+        @media map(constants, mediaQueries, palm){
             top: $tip-bottom-bottom-position;
             left: $tip-left-left-position + 16;
         }

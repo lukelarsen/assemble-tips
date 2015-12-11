@@ -1,27 +1,29 @@
 [Assemble]:                http://assemblecss.com
-[Assemble Core]:           https://github.com/lukelarsen/assemble-core
+[Assemble Base]:           https://github.com/lukelarsen/assemble-base
+[postcss-map]:             https://github.com/pascalduez/postcss-map
 
 # Assemble Tips
 Assemble Tips is a component of the [Assemble] CSS Framework. It will give you a solid base for using media players in your project. It has some default styles that can easily be overridden so you can add your own look.
 
 ## Requirements
-Assemble Tips requires [Assemble Core].
+- Assemble Tips requires [Assemble Base].
+- tip.js (found in this repo)
 
 ## Installation
-npm install assemble-tips --save-dev<br>
-You will then need to load the tips.js file in this repo into your project.
+- npm install assemble-tips --save-dev
+- You will then need to load the tips.js file in this repo into your project.
 
 ## Usage
 ### Gulp
 ```js
 var gulp = require('gulp');
 var postcss = require('gulp-postcss');
-var assembleCore = require('assemble-core');
+var assembleBase = require('assemble-base');
 var assembleTips = require('assemble-tips');
 
 gulp.task('css', function () {
     var processors = [
-        assembleCore,
+        assembleBase,
         assembleTips
     ];
     return gulp.src('./src/*.css')
@@ -30,8 +32,19 @@ gulp.task('css', function () {
 });
 ```
 
+### HTML
+```html
+<div class="tip-container">
+    <span class="tip-trigger">?</span>
+    <span class="tip  tip--**position modifier**">
+        Tip Content Here
+        <span class="tip__close">×</span>
+    </span>
+</div>
+```
+
 ## Options
-Options are set with variables. These variables are already set with their default values so they will just work out of the box. If you wish to change them just define the variable you want to change before you load the _assemble-tips.css file. You may wish you see [Assemble Core] for more examples and directions for setting up a Assemble project.
+Options are set with variables. These variables are already set with their default values so they will just work out of the box. If you wish to change them just define the variable you want to change before you load the _assemble-tips.css file. You may wish you see [Assemble Base] for more examples and directions for setting up a Assemble project.
 
 ### Design Variables
 
@@ -123,6 +136,29 @@ $tip-line-height: 18px;
 $tip-transition: 0.5s bounce;
 ```
 
+##### Tip z-index
+This component makes use of the [postcss-map] plugin to set the z-index. [postcss-map] is included with [Assemble Base] so you are good to go. This helps keep all our z-index values in one place. To get this working you will need to:
+1- Create a 'constants.json' file and add this to it
+```js
+{
+    "zIndexes": {
+        "tip": 11
+    }
+}
+```
+2- Then in your main gulp file provide the path to the newly created constants.json in the assembeCore options.
+```js
+assembleCore({
+    basePath: 'src/',
+    maps: [ 'constants.json' ]
+})
+```
+
+Now the assemble-tips component will pull the z-index values from the constants.js file. You can add more values there and call them in your css with
+```css
+z-index: map(constants, zIndexes, something);
+```
+
 
 ### Modifier Variables
 
@@ -132,6 +168,26 @@ $tip-transition: 0.5s bounce;
 - Type: Boolean
 ```css
 $tip-container--right: true;
+```
+Usage
+```html
+<form>
+    <ul class="form-thirds">
+        <li>
+            <label>
+                Input Field 2
+                <div class="tip-container  tip-container--right">
+                    <span class="tip-trigger">?</span>
+                    <span class="tip  tip--left">
+                        Tip Content Here
+                        <span class="tip__close">×</span>
+                    </span>
+                </div>
+            </label>
+            <input type="text">
+        </li>
+    </ul>
+</form>
 ```
 
 ##### $tip-enable-width
@@ -149,6 +205,26 @@ $tip-enable-width: true;
 ```css
 $tip-width: 250px;
 ```
+Usage
+```html
+<form>
+    <ul class="form-thirds">
+        <li>
+            <label>
+                Input Field 2
+                <div class="tip-container  tip-container--right">
+                    <span class="tip-trigger">?</span>
+                    <span class="tip  tip--top  tip--fixed-width">
+                        Tip content here that is really long to show that this won't wrap unless you put a fixed width on the tip.
+                        <span class="tip__close">×</span>
+                    </span>
+                </div>
+            </label>
+           <input type="text">
+        </li>
+    </ul>
+</form>
+```
 
 
 ### Placement Variables
@@ -159,6 +235,26 @@ $tip-width: 250px;
 - Type: Boolean
 ```css
 $tip-enable-top: true;
+```
+Usage
+```html
+<form>
+    <ul class="form-thirds">
+        <li>
+            <label>
+                Input Field 2
+                <div class="tip-container">
+                    <span class="tip-trigger">?</span>
+                    <span class="tip  tip--top">
+                        Tip Content Here
+                        <span class="tip__close">×</span>
+                    </span>
+                </div>
+            </label>
+            <input type="text">
+        </li>
+    </ul>
+</form>
 ```
 
 ##### $tip-top-top-position
@@ -184,6 +280,26 @@ $tip-top-right-position: 20px;
 ```css
 $tip-enable-bottom: true;
 ```
+Usage
+```html
+<form>
+    <ul class="form-thirds">
+        <li>
+            <label>
+                Input Field 2
+                <div class="tip-container">
+                    <span class="tip-trigger">?</span>
+                    <span class="tip  tip--bottom">
+                        Tip Content Here
+                        <span class="tip__close">×</span>
+                    </span>
+                </div>
+            </label>
+            <input type="text">
+        </li>
+    </ul>
+</form>
+```
 
 ##### $tip-bottom-bottom-position
 - Set how far from the bottom the top tips should be.
@@ -208,6 +324,26 @@ $tip-bottom-right-position: 20px;
 ```css
 $tip-enable-right: true;
 ```
+Usage
+```html
+<form>
+    <ul class="form-thirds">
+        <li>
+            <label>
+                Input Field 2
+                <div class="tip-container">
+                    <span class="tip-trigger">?</span>
+                    <span class="tip  tip--right">
+                        Tip Content Here
+                        <span class="tip__close">×</span>
+                    </span>
+                </div>
+            </label>
+            <input type="text">
+        </li>
+    </ul>
+</form>
+```
 
 ##### $tip-right-right-position
 - Set how far from the right the right tips should be.
@@ -231,6 +367,26 @@ $tip-top-right-position: -10px;
 - Type: Boolean
 ```css
 $tip-enable-left: true;
+```
+Usage
+```html
+<form>
+    <ul class="form-thirds">
+        <li>
+            <label>
+                Input Field 2
+                <div class="tip-container">
+                    <span class="tip-trigger">?</span>
+                    <span class="tip  tip--left">
+                        Tip Content Here
+                        <span class="tip__close">×</span>
+                    </span>
+                </div>
+            </label>
+            <input type="text">
+        </li>
+    </ul>
+</form>
 ```
 
 ##### $tip-left-left-position
