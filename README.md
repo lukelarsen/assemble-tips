@@ -14,22 +14,16 @@ Assemble Tips is a component of the [Assemble] CSS Framework. It will give you a
 - You will then need to load the tips.js file in this repo into your project.
 
 ## Usage
-### Gulp
-```js
-var gulp = require('gulp');
-var postcss = require('gulp-postcss');
-var assembleBase = require('assemble-base');
-var assembleTips = require('assemble-tips');
+Import the _assemble-tips.css file from your css file.
+```css
+@import '../node_modules/assemble-base/base';
 
-gulp.task('css', function () {
-    var processors = [
-        assembleBase,
-        assembleTips
-    ];
-    return gulp.src('./src/*.css')
-        .pipe(postcss(processors))
-        .pipe(gulp.dest('./dest'));
-});
+/*
+Override variables here before the Assemble Components are loaded.
+*/
+
+@import '../node_modules/assemble-tips/assemble-tips';
+```
 ```
 
 ### HTML
