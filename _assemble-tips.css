@@ -37,7 +37,7 @@
     width: auto;
     padding: $tip-padding;
     transition: $tip-transition;
-    background: $tip-background-color;
+    background: $tip-background-color !important;
     cursor: default;
     color: $tip-text-color;
     font-size: $tip-font-size;

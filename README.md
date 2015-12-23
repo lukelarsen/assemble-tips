@@ -24,7 +24,6 @@ Override variables here before the Assemble Components are loaded.
 
 @import '../node_modules/assemble-tips/assemble-tips';
 ```
-```
 
 ### HTML
 ```html
