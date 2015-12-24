@@ -31,7 +31,7 @@ Override variables here before the Assemble Components are loaded.
     <span class="tip-trigger">?</span>
     <span class="tip  tip--**position modifier**">
         Tip Content Here
-        <span class="tip__close">×</span>
+        <span class="tip__close--default">×</span>
     </span>
 </div>
 ```

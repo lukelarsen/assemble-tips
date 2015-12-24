@@ -53,7 +53,7 @@
     cursor: pointer;
 }
 
-.tip__close{
+.tip__close--default{
     position: absolute;
     top: 0;
     right: -26px;
@@ -66,7 +66,7 @@
     font-size: 14px;
 }
 
-.tip__close:hover{
+.tip__close--default:hover{
     background-color: $tip-close-background-hover-color;
     color: $tip-close-text-hover-color;
 }
