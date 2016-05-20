@@ -340,10 +340,10 @@ Usage
 
 ##### $tip-right-right-position
 - Set how far from the right the right tips should be.
-- Default: calc(-$tip-width - 8);
+- Default: calc(-$tip-width - 8px);
 - Type: Number
 ```css
-$tip-top-top-position: calc(-$tip-width - 10);
+$tip-top-top-position: calc(-$tip-width - 10px);
 ```
 
 ##### $tip-right-top-position
@@ -384,10 +384,10 @@ Usage
 
 ##### $tip-left-left-position
 - Set how far from the left the left tips should be.
-- Default: calc(-$tip-width - 33);
+- Default: calc(-$tip-width - 33px);
 - Type: Number
 ```css
-$tip-top-top-position: calc(-$tip-width - 38);
+$tip-top-top-position: calc(-$tip-width - 38px);
 ```
 
 ##### $tip-left-top-position
